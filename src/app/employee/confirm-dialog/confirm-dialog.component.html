@@ -1,6 +1,43 @@
-<h2 mat-dialog-title>Employee Details</h2>
+<h2 mat-dialog-title>{{data.message}}</h2>
 <mat-dialog-content class="mat-typography">
-  <h3>{{data.message}}</h3>
+  <mat-grid-list cols="3" rowHeight="100px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <div>
+        <p><b>Name</b></p>
+        <span>{{data.empObj.name}}</span>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <div>
+        <p><b>Skill</b></p>
+        <span>{{data.empObj.skill}}</span>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <div>
+        <p><b>Open Relocate</b></p>
+        <span>{{data.empObj.relocate}}</span>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <div>
+        <p><b>Designation</b></p>
+        <span>{{data.empObj.designation}}</span>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <div>
+        <p><b>Technology</b></p>
+        <span>{{data.empObj.technology}}</span>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <div>
+        <p><b>Location</b></p>
+        <span>{{data.empObj.location}}</span>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>

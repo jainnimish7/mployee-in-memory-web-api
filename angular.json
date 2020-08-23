@@ -30,6 +30,7 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
+              "./node_modules/@ng-select/ng-select/themes/default.theme.css",
               "./src/assets/stylesheets/font-awesome.min.css",
               "./src/assets/stylesheets/bootstrap.min.css"
             ],

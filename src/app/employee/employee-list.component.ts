@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { Subject, Observable } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 import { SharedService } from '../services/shared.service';
 import { Employee } from '../model/employee';
 
@@ -14,35 +12,24 @@ import { Employee } from '../model/employee';
 
 export class EmployeeListComponent implements OnInit {
   allEmployees: any = [];
+  filteredEmployees: any = [];
 
-  searchTextChanged: Subject<string> = new Subject<string>();
+  locations = ['Indore', 'Pune', 'Mumbai', 'Bangalore'];
+  technologies = ['XD', 'Photoshop', 'Figma', 'Sketch'];
+  skills = ['Angular', 'UX Design', 'UI Development', 'GraphQL'];
+  filteredObj = { location: [], technology: [], skills: [] };
 
-  public searchKeyword = '';
   constructor(private dialog: MatDialog, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.getAllEmployees();
-    this.searchTextChanged.pipe(debounceTime(1000))
-      .subscribe(model => this.searchByName());
-  }
-
-  search() {
-    this.searchTextChanged.next();
-  }
-
-  // searching by employee's name
-  searchByName() {
-    if (this.searchKeyword) {
-      this.allEmployees = this.allEmployees.filter(employee => employee.name.toLowerCase().includes(this.searchKeyword));
-    } else {
-      this.getAllEmployees();
-    }
   }
 
   // get list of all employees
   getAllEmployees() {
     this.sharedService.getEmployees().subscribe(res => {
       this.allEmployees = res;
+      this.filteredEmployees = res;
     });
   }
 
@@ -51,14 +38,29 @@ export class EmployeeListComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         message: 'Employee Details',
-        empObj: employee
-      }
+        empObj: employee,
+      },
+      width: '500px',
+      height: '350px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log(result);
-      }
-    });
+    dialogRef.afterClosed().subscribe();
+  }
+
+  getFilteredItems(event) {
+    this.filteredObj[event.title] = [];
+    this.filteredObj[event.title] = event.value;
+  }
+
+  applyFilter() {
+    if (this.filteredObj.technology.length || this.filteredObj.location.length || this.filteredObj.skills.length) {
+      this.filteredEmployees = this.allEmployees.filter(emp =>
+        this.filteredObj.technology.includes(emp.technology) ||
+        this.filteredObj.location.includes(emp.location) ||
+        this.filteredObj.skills.includes(emp.skill)
+      );
+    } else {
+      this.filteredEmployees = this.allEmployees;
+    }
   }
 }

@@ -1,13 +1,19 @@
 <section class="employee-section">
   <div class="left-block">
     <div class="search-box">
-      <label>Search</label>
-      <input type="text" class="form-control" [(ngModel)]="searchKeyword" (ngModelChange)="search()" name="search"
-        placeholder="Search">
-      <i class="fa fa-search"></i>
+      <h1>Filter By</h1>
+      <app-custom-select [title]="'Technology'" [items]="technologies" [placeholderValue]="'Select technology'"
+        (filterEmployee)="getFilteredItems($event)">
+      </app-custom-select>
+      <app-custom-select [title]="'Skills'" [items]="skills" [placeholderValue]="'Select skills'"
+        (filterEmployee)="getFilteredItems($event)">
+      </app-custom-select>
+      <app-custom-select [title]="'Location'" [items]="locations" [placeholderValue]="'Select location'"
+        (filterEmployee)="getFilteredItems($event)">
+      </app-custom-select>
     </div>
-    <div class="create-product">
-      <a href="javascript:void(0)" routerLink="/product/new">Filter</a>
+    <div class="action-btn">
+      <a href="javascript:void(0)" (click)="applyFilter()">Apply</a>
     </div>
   </div>
   <div class="middle-block">
@@ -18,6 +24,7 @@
       <table class="table">
         <thead>
           <tr>
+            <th></th>
             <th>Name</th>
             <th>Designation</th>
             <th>Technologies</th>
@@ -28,7 +35,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of allEmployees">
+          <tr *ngFor="let employee of filteredEmployees">
+            <td></td>
             <td>{{employee.name}}</td>
             <td>{{employee.designation}}</td>
             <td>{{employee.technology}}</td>
