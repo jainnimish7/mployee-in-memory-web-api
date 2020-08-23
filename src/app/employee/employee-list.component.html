@@ -7,7 +7,7 @@
       <i class="fa fa-search"></i>
     </div>
     <div class="create-product">
-      <a href="javascript:void(0)" routerLink="/product/new">Create Product</a>
+      <a href="javascript:void(0)" routerLink="/product/new">Filter</a>
     </div>
   </div>
   <div class="middle-block">
@@ -28,23 +28,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>John Smith</td>
-            <td>UI specialist</td>
-            <td>Angular9, RoR, HTML</td>
-            <td>javascript</td>
-            <td>Indore</td>
-            <td>Yes</td>
-            <td><a href="javascript:void(0)" class="detail-btn">Details</a></td>
-          </tr>
-          <tr>
-            <td>John Smith</td>
-            <td>UI specialist</td>
-            <td>Angular9, RoR, HTML</td>
-            <td>javascript</td>
-            <td>Indore</td>
-            <td>Yes</td>
-            <td><a href="javascript:void(0)" class="detail-btn">Details</a></td>
+          <tr *ngFor="let employee of allEmployees">
+            <td>{{employee.name}}</td>
+            <td>{{employee.designation}}</td>
+            <td>{{employee.technology}}</td>
+            <td>{{employee.skill}}</td>
+            <td>{{employee.location}}</td>
+            <td>{{employee.relocate}}</td>
+            <td><a href="javascript:void(0)" (click)="displayEmployeeDetails(employee)" class="detail-btn">Details</a>
+            </td>
           </tr>
         </tbody>
       </table>
