@@ -12,12 +12,13 @@
         (filterEmployee)="getFilteredOptions($event)">
       </app-custom-select>
     </div>
-    <div class="action-btn">
-      <a href="javascript:void(0)" (click)="applyFilter()">Apply</a>
+    <div>
+      <button mat-raised-button color="primary" (click)="applyFilter()">Apply</button>
     </div>
   </div>
   <div class="middle-block">
     <div class="lobby-block">
+      <span class="pull-right">Total: {{filteredEmployees.length}}</span>
       <h3>Employee List</h3>
     </div>
     <div class="lobby-table table-responsive">

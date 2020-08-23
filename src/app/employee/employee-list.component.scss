@@ -17,17 +17,6 @@
   width: 300px;
 }
 
-.action-btn {
-  a {
-    background: $light-grey;
-    border-radius: 25px;
-    color: $midnight-blue;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 6px 18px 8px 20px;
-  }
-}
-
 .search-box {
   label {
     color: $midnight-blue;
@@ -128,11 +117,6 @@
     font-weight: bold;
   }
 
-  p {
-    color: #121d47;
-    font-weight: bold;
-  }
-
   background: $white;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -151,10 +135,6 @@
     background: $white;
     border-top: 1px solid #e0e2ec;
     font-size: 14px;
-
-    &.prizes {
-      font-weight: bold;
-    }
 
     a.detail-btn {
       background: #ececec;

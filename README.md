@@ -33,6 +33,7 @@ Shut it down manually with `Ctrl-C`.
 These are the most useful commands defined in `package.json`:
 
 * `npm start` - runs the TypeScript compiler, asset copier, and a server at the same time, all three in "watch mode".
+* `ng test` - runs the test cases for the project.
 * `npm run build` - runs the TypeScript compiler and asset copier once.
 * `npm run build:prod` - runs the TypeScript compiler and asset copier in "production mode"; when changes occur to source files, they will be recompiled or copied into `dist/`.
 

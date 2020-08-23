@@ -4,6 +4,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { SharedService } from '../services/shared.service';
 import { Employee } from '../model/employee';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-employee-list',
@@ -67,6 +68,11 @@ export class EmployeeListComponent implements OnInit {
     } else {
       this.filteredEmployees = this.allEmployees;
     }
+  }
+
+  resetFilter() {
+    this.filteredObj = { location: [], technology: [], skills: [] };
+    console.log(this.filteredObj);
   }
 
   // Check all checkboxes
