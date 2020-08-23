@@ -1,0 +1,53 @@
+<section class="employee-section">
+  <div class="left-block">
+    <div class="search-box">
+      <label>Search</label>
+      <input type="text" class="form-control" [(ngModel)]="searchKeyword" (ngModelChange)="search()" name="search"
+        placeholder="Search">
+      <i class="fa fa-search"></i>
+    </div>
+    <div class="create-product">
+      <a href="javascript:void(0)" routerLink="/product/new">Create Product</a>
+    </div>
+  </div>
+  <div class="middle-block">
+    <div class="lobby-block">
+      <h3>Employee List</h3>
+    </div>
+    <div class="lobby-table table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Technologies</th>
+            <th>Skills</th>
+            <th>Location</th>
+            <th>Open Relocate</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John Smith</td>
+            <td>UI specialist</td>
+            <td>Angular9, RoR, HTML</td>
+            <td>javascript</td>
+            <td>Indore</td>
+            <td>Yes</td>
+            <td><a href="javascript:void(0)" class="detail-btn">Details</a></td>
+          </tr>
+          <tr>
+            <td>John Smith</td>
+            <td>UI specialist</td>
+            <td>Angular9, RoR, HTML</td>
+            <td>javascript</td>
+            <td>Indore</td>
+            <td>Yes</td>
+            <td><a href="javascript:void(0)" class="detail-btn">Details</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

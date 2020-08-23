@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'mployee-demo';
+  isBlueBackground = true;
+  isDashboardRoute = true;
+
+  constructor(private router: Router) {
+    router.events.subscribe((route: any) => {
+      if (route.url) {
+        this.isDashboardRoute = route.url === '/';
+        this.isBlueBackground = (route.url === '/signup');
+      }
+    });
+  }
 }
