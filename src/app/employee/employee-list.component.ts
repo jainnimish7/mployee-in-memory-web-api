@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { SharedService } from '../services/shared.service';
 import { Employee } from '../model/employee';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-employee-list',
@@ -14,9 +15,9 @@ export class EmployeeListComponent implements OnInit {
   allEmployees: any = [];
   filteredEmployees: any = [];
 
-  locations = ['Indore', 'Pune', 'Mumbai', 'Bangalore'];
-  technologies = ['XD', 'Photoshop', 'Figma', 'Sketch'];
-  skills = ['Angular', 'UX Design', 'UI Development', 'GraphQL'];
+  locations = [];
+  technologies = [];
+  skills = [];
   filteredObj = { location: [], technology: [], skills: [] };
 
   constructor(private dialog: MatDialog, private sharedService: SharedService) { }
@@ -30,6 +31,9 @@ export class EmployeeListComponent implements OnInit {
     this.sharedService.getEmployees().subscribe(res => {
       this.allEmployees = res;
       this.filteredEmployees = res;
+      this.locations = _.uniq(_.map(this.allEmployees, 'location'));
+      this.skills = _.uniq(_.map(this.allEmployees, 'skill'));
+      this.technologies = _.uniq(_.map(this.allEmployees, 'technology'));
     });
   }
 
@@ -40,18 +44,19 @@ export class EmployeeListComponent implements OnInit {
         message: 'Employee Details',
         empObj: employee,
       },
-      width: '500px',
-      height: '350px',
+      width: '650px',
+      height: '380px',
     });
 
     dialogRef.afterClosed().subscribe();
   }
 
-  getFilteredItems(event) {
-    this.filteredObj[event.title] = [];
+  // Getting filtered options from select box
+  getFilteredOptions(event) {
     this.filteredObj[event.title] = event.value;
   }
 
+  // filtering employees on click of apply button
   applyFilter() {
     if (this.filteredObj.technology.length || this.filteredObj.location.length || this.filteredObj.skills.length) {
       this.filteredEmployees = this.allEmployees.filter(emp =>
@@ -62,5 +67,15 @@ export class EmployeeListComponent implements OnInit {
     } else {
       this.filteredEmployees = this.allEmployees;
     }
+  }
+
+  // Check all checkboxes
+  checkAll(event) {
+    this.filteredEmployees.forEach(x => x.state = event.target.checked);
+  }
+
+  // Checking if all checkboxes are checked or not
+  isAllChecked() {
+    return this.filteredEmployees.every(_ => _.state);
   }
 }

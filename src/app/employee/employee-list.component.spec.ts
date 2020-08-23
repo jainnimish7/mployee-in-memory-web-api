@@ -5,7 +5,7 @@ import { EmployeeListComponent } from './employee-list.component';
 import { MatDialog } from '@angular/material/dialog';
 
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { SharedService } from '../services/shared.service';
 
 describe('EmployeeListComponent', () => {
   let fixture: ComponentFixture<EmployeeListComponent>;
@@ -20,6 +20,9 @@ describe('EmployeeListComponent', () => {
         })
       })
     };
+    const sharedServiceStub = {
+
+    };
     TestBed.configureTestingModule({
       imports: [
         FormsModule, ReactiveFormsModule,
@@ -32,7 +35,8 @@ describe('EmployeeListComponent', () => {
         CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA
       ],
       providers: [
-        { provide: MatDialog, useValue: matDialogStub }
+        { provide: MatDialog, useValue: matDialogStub },
+        { provide: SharedService, useValue: sharedServiceStub }
 
       ]
     }).compileComponents();

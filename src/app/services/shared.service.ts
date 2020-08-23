@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Employee } from '../model/employee';
-const SERVER_URL = 'http://localhost:8080/api/';
+const SERVER_URL = 'http://localhost:3000/api/';
 
 @Injectable()
 export class SharedService {

@@ -3,13 +3,13 @@
     <div class="search-box">
       <h1>Filter By</h1>
       <app-custom-select [title]="'Technology'" [items]="technologies" [placeholderValue]="'Select technology'"
-        (filterEmployee)="getFilteredItems($event)">
+        (filterEmployee)="getFilteredOptions($event)">
       </app-custom-select>
       <app-custom-select [title]="'Skills'" [items]="skills" [placeholderValue]="'Select skills'"
-        (filterEmployee)="getFilteredItems($event)">
+        (filterEmployee)="getFilteredOptions($event)">
       </app-custom-select>
       <app-custom-select [title]="'Location'" [items]="locations" [placeholderValue]="'Select location'"
-        (filterEmployee)="getFilteredItems($event)">
+        (filterEmployee)="getFilteredOptions($event)">
       </app-custom-select>
     </div>
     <div class="action-btn">
@@ -24,7 +24,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th></th>
+            <th><input type="checkbox" name="all" [checked]="isAllChecked()" (change)="checkAll($event)" /></th>
             <th>Name</th>
             <th>Designation</th>
             <th>Technologies</th>
@@ -36,7 +36,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let employee of filteredEmployees">
-            <td></td>
+            <td><input type="checkbox" name="sizecb[]" value="{{employee.id}}" [(ngModel)]="employee.state" />&nbsp;
+            </td>
             <td>{{employee.name}}</td>
             <td>{{employee.designation}}</td>
             <td>{{employee.technology}}</td>
@@ -45,6 +46,9 @@
             <td>{{employee.relocate}}</td>
             <td><a href="javascript:void(0)" (click)="displayEmployeeDetails(employee)" class="detail-btn">Details</a>
             </td>
+          </tr>
+          <tr *ngIf="!filteredEmployees.length">
+            <td colspan="8" class="text-center">No Record found</td>
           </tr>
         </tbody>
       </table>
